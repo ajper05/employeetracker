@@ -204,5 +204,49 @@ function viewEmp(){
 
 
 function updateEmp (){
-    
+    connection.query("SELECT * FROM employee",function(err,results){
+        if (err) throw err;
+        console.log(results)
+    })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//HOLDING ONTO THIS IN CASE I NEED IT LATER, TRYING ANOTHER METHOD
+
+
+ //     inquirer
+    //     .prompt([
+    //         {
+    //         name:"empChoice",
+    //         type:"list",
+    //         choices:function(){
+    //             choicesArray = []
+    //             for (var i=0; i < results.length; i++){
+    //                 choicesArray.push(`${JSON.stringify(results[i])}`)
+    //                 //choicesArray.push(`${results[i].first_name} ${results[i].last_name}`);
+    //             }
+    //             return choicesArray;
+    //         },
+    //           message: "Which employee would you like to update?"
+    //         }
+    //     ])
+    //     .then(function(answer){
+
+    //     })
+    // })
