@@ -6,7 +6,7 @@ USE emp_tracker;
 
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT,
-    name NOT NULL VARCHAR(30),
+    name VARCHAR(30) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -25,5 +25,5 @@ CREATE TABLE employee(
     role_id INT NOT NULL,
     manager_id INT NOT NULL,
     PRIMARY KEY (id)
-)
+);
 
