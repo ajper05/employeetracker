@@ -29,26 +29,46 @@ function empStart(){
         type:"list",
         message:"What would you like to do?",
         choices: [
-            "Add departments, roles, employees",
-            "View departments, roles, employees",
-            "Update Employee Roles",
+            "Add Department",
+            "Add Role",
+            "Add Employee",
+            "View All Departments",
+            "View All Roles",
+            "View All Employees",
+            "Update Employee Role",
             "End"
         ]
     })
     .then(function(answer){
         switch (answer.start) {
-            case "Add departments, roles, employees":
-                adder();
+            case "Add Department":
+                addDept();
                 break;
             
-            case "View departments, roles, employees":
-                viewer();
+            case "Add Role":
+                addRole();
                 break;
             
-            case "Update Employee Roles":
-                updater();
+            case "Add Employee":
+                addEmp();
                 break;
             
+            case "View All Departments":
+                viewDept();
+                break;
+            
+            case "View All Roles":
+                viewRole();
+                break;
+            
+            case "View All Employees":
+                viewEmp();
+                break;
+            
+            case "Update Employee Role":
+                updateEmp();
+                break;
+
             case "End":
                 connection.end();
                 break;
@@ -56,22 +76,24 @@ function empStart(){
     });
 }
 
-function adder(){
+function addDept(){
     inquirer
     .prompt({
-        name:"addType",
-        type:"list",
-        message:"What would you like to add?",
-        choices:[
-            "Add department",
-            "Add Role",
-            "Add Employee",
-            "Return to options"
-        ]
+        name:"deptName",
+        type:"input",
+        message:"What's the department name you'd like to add?",
     })
     .then(function(answer){
-        switch (answer.addType) {
-            case "Add department":
-        }
+        connection.query(
+            "INSERT INTO department SET ?",
+            {
+                name: answer.deptName
+            },
+            function(err) {
+                if (err) throw err;
+                console.log("Department has been added!");
+                empStart();
+            }
+        )
     })
 }
