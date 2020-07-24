@@ -27,7 +27,7 @@ function empStart(){
     .prompt({
         name:"start",
         type:"list",
-        message:"What would you like to do?",
+        message:"Welcome to the Employee Management System. What would you like to do?",
         choices: [
             "Add Department",
             "Add Role",
