@@ -97,3 +97,82 @@ function addDept(){
         )
     })
 }
+
+
+function addRole(){
+    inquirer
+    .prompt([
+    {
+        name:"title",
+        type:"input",
+        message:"What's the role you would like to add?",
+    },
+    {
+        name: "salary",
+        type: "input",
+        message:"What is the salary for this role?"
+    },
+    {
+        name: "dept_id",
+        type: "input",
+        message: "What is the department ID number for this role?"
+    }
+])
+    .then(function(answer){
+        connection.query(
+            "INSERT INTO role SET ?",
+            {
+                title: answer.title,
+                salary: answer.salary,
+                department_id: answer.dept_id
+            },
+            function(err) {
+                if (err) throw err;
+                console.log("New Role has been added!");
+                empStart();
+            }
+        )
+    })
+}
+
+function addEmp(){
+    inquirer
+    .prompt([
+    {
+        name:"first_name",
+        type:"input",
+        message:"What's the first name of this employee?",
+    },
+    {
+        name: "last_name",
+        type: "input",
+        message:"What is the last name of this employee?"
+    },
+    {
+        name: "role_id",
+        type: "input",
+        message: "What is id number for this employee's role?"
+    },
+    {
+        name:"manager_id",
+        type:"input",
+        message: "What is the manager ID number of the manager of this employee?"
+    }
+])
+    .then(function(answer){
+        connection.query(
+            "INSERT INTO employee SET ?",
+            {
+                first_name: answer.first_name,
+                last_name: answer.last_name,
+                role_id: answer.role_id,
+                manager_id: answer.manager_id
+            },
+            function(err) {
+                if (err) throw err;
+                console.log("New Employee has been added!");
+                empStart();
+            }
+        )
+    })
+}
