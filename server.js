@@ -203,50 +203,29 @@ function viewEmp(){
 }
 
 
-function updateEmp (){
-    connection.query("SELECT * FROM employee",function(err,results){
-        if (err) throw err;
-        console.log(results)
+function updateEmp() {
+    inquirer.prompt([
+        {
+            message: "First name of employee to update",
+            type: "input",
+            name: "first_name"
+        },
+        {
+        message:"Last name of employee to update",
+        type:"input",
+        name:"last_name"
+        }, 
+        {
+            message: "enter the new role ID:",
+            type: "number",
+            name: "role_id"
+        },
+    ]).then(function (answer) {
+        connection.query("UPDATE employee SET role_id = ? WHERE first_name = ? AND last_name = ?", [answer.role_id, answer.first_name, answer.last_name], function (err, data) {
+            if (err) throw err
+            console.log("Role Updated Successfully!")
+        })
+        setTimeout(empStart,10000);
     })
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//HOLDING ONTO THIS IN CASE I NEED IT LATER, TRYING ANOTHER METHOD
-
-
- //     inquirer
-    //     .prompt([
-    //         {
-    //         name:"empChoice",
-    //         type:"list",
-    //         choices:function(){
-    //             choicesArray = []
-    //             for (var i=0; i < results.length; i++){
-    //                 choicesArray.push(`${JSON.stringify(results[i])}`)
-    //                 //choicesArray.push(`${results[i].first_name} ${results[i].last_name}`);
-    //             }
-    //             return choicesArray;
-    //         },
-    //           message: "Which employee would you like to update?"
-    //         }
-    //     ])
-    //     .then(function(answer){
-
-    //     })
-    // })
