@@ -176,3 +176,33 @@ function addEmp(){
         )
     })
 }
+
+function viewDept(){
+    connection.query("SELECT * FROM department", function(err,results) {
+        if (err) throw err;
+        console.table("Departments",results)
+    })
+    setTimeout(empStart,10000);
+}
+
+
+function viewRole(){
+    connection.query("SELECT * FROM role", function(err,results) {
+        if (err) throw err;
+        console.table("Roles",results)
+    })
+    setTimeout(empStart,10000);
+}
+
+function viewEmp(){
+    connection.query("SELECT * FROM employee", function(err,results) {
+        if (err) throw err;
+        console.table("Employees",results)
+    })
+    setTimeout(empStart,10000);
+}
+
+
+function updateEmp (){
+    
+}
